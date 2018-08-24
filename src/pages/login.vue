@@ -25,6 +25,13 @@
           </v-card-actions>
         </v-card>
       </v-form>
+      <v-card>
+        <v-card-text>
+          <a href="/api/auth/steam" target="_blank">
+            <img src="~/assets/steam_signin.png" />
+          </a>
+        </v-card-text>
+      </v-card>
     </v-flex>
 	</v-layout>
 </template>
@@ -39,17 +46,33 @@ export default {
       valid: false
     }
   },
+  mounted() {
+    window.addEventListener('message', this.message)
+  },
+  destroyed() {
+    window.removeEventListener('message', this.message)
+  },
   methods: {
-    async login () {
-      const { username, password } = this
-      const { token } = await this.$api.auth(username, password)
+    auth (token) {
       if (token) {
         localStorage.authToken = token
         this.$store.commit('SET_TOKEN', token)
         this.$router.push(this.redirect || '/map')
       } else {
-        
+
       }
+    },
+    message (e) {
+      try {
+        const { token } = JSON.parse(e.data)
+        console.log(e,token)
+        this.auth(token)
+      } catch(e) {}
+    },
+    async login () {
+      const { username, password } = this
+      const { token } = await this.$api.auth(username, password)
+      this.auth(token)
     }
   }
 }

@@ -1,0 +1,34 @@
+{
+  "name": "screepsmod-web-client",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "Adam Shumann <ashumann13@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "_dev": "cross-env NODE_ENV=development webpack-dev-server --host 0.0.0.0 --inline --hot",
+    "_build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "randomcolor": "^0.5.3",
+    "screeps-api": "^1.7.2",
+    "seedrandom": "^2.4.3",
+    "vuetify": "^1.1.14"
+  },
+  "devDependencies": {
+    "@nuxtjs/axios": "^5.3.1",
+    "@nuxtjs/proxy": "^1.2.4",
+    "@screeps/renderer": "^1.0.0",
+    "@screeps/renderer-metadata": "^1.0.0",
+    "cross-env": "^5.0.5",
+    "nuxt": "^1.4.2",
+    "renderer": "screeps/renderer",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+  }
+}

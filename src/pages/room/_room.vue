@@ -38,12 +38,13 @@
 				width: 300,
 				height: 300,
 				es: null,
+        hasLoaded: false,
         state: { objects: [], gameTime: 0, users: {} }
 			}
 		},
 		watch: {
 			room (val) {
-				if(val.match(/^[EW]\d+[NS]\d+$/)) {
+				if(this.hasLoaded && val.match(/^[EW]\d+[NS]\d+$/)) {
 					this.setRoom(val)
 				}
 			}
@@ -74,6 +75,7 @@
 		methods: {
       loaded () {
         console.log('loaded')
+        this.hasLoaded = true
         this.setRoom(this.room)
       },
 			wheel (e) {
